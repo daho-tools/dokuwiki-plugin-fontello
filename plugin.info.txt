@@ -5,3 +5,4 @@ date   2026-04-24
 name   Fontello Plugin
 desc   Imports a Fontello ZIP package and renders icons via <icon:name> syntax
 url    https://www.dokuwiki.org/plugin:fontello
+license GPL 2
