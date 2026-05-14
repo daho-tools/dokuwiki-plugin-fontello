@@ -1,0 +1,3 @@
+Dieses Plugin importiert genau ein aktives Fontello-ZIP und stellt dessen Icons ueber die Syntax `<icon:name>` bereit.
+
+Lade ein von Fontello exportiertes ZIP hoch. Das Plugin extrahiert die Font-Dateien, erzeugt das benoetigte Stylesheet und listet die importierten Icon-Namen darunter auf.

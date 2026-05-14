@@ -1,0 +1,36 @@
+div.picker.pk_fontello {
+    max-width: 300px;
+    padding: 0.25em;
+}
+
+div.picker.pk_fontello button.fontello-picker-button {
+    min-width: 28px;
+    min-height: 28px;
+    line-height: 1;
+    text-align: center;
+}
+
+div.picker.pk_fontello button.fontello-picker-button span.fontello-icon:before {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#dokuwiki__aside #sidebar ul li .li:has(> a + span.fontello-icon) {
+    display: flex;
+    align-items: center;
+}
+
+#dokuwiki__aside #sidebar ul li .li:has(> a + span.fontello-icon) > a {
+    display: inline;
+    width: auto;
+    min-width: 0;
+}
+
+#dokuwiki__aside #sidebar ul li .li:has(> a + span.fontello-icon) > span.fontello-icon {
+    flex: 0 0 auto;
+    line-height: 1;
+}
+
+#dokuwiki__aside #sidebar ul li .li:has(> a + span.fontello-icon) > span.fontello-icon:before {
+    margin-right: 0;
+}
