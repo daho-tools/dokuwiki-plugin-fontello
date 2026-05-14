@@ -203,10 +203,12 @@ class action_plugin_fontello extends ActionPlugin
             $event->data->depends['files'] = [];
         }
 
-        foreach ([
+        $files = [
             DOKU_PLUGIN . 'fontello/assets/active/config.json',
             DOKU_PLUGIN . 'fontello/assets/active/enabled.json',
-        ] as $file) {
+        ];
+
+        foreach ($files as $file) {
             if (file_exists($file)) {
                 $event->data->depends['files'][] = $file;
             }
@@ -265,8 +267,12 @@ class action_plugin_fontello extends ActionPlugin
      */
     protected function replaceCatlistIconTokens($html, helper_plugin_fontello $helper)
     {
+        $pattern = '/<(?P<tag>h[1-5]|strong|span|li)\b' .
+            '(?P<attrs>[^>]*\bclass="[^"]*\bcatlist-(?:head|nshead|page)\b[^"]*"[^>]*)>' .
+            '(?P<body>.*?)<\/(?P=tag)>/s';
+
         return preg_replace_callback(
-            '/<(?P<tag>h[1-5]|strong|span|li)\b(?P<attrs>[^>]*\bclass="[^"]*\bcatlist-(?:head|nshead|page)\b[^"]*"[^>]*)>(?P<body>.*?)<\/(?P=tag)>/s',
+            $pattern,
             function ($match) use ($helper) {
                 return '<' . $match['tag'] . $match['attrs'] . '>' .
                     $this->replaceEscapedIconTokens($match['body'], $helper, true) .

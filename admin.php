@@ -54,7 +54,10 @@ class admin_plugin_fontello extends AdminPlugin
             return;
         }
 
-        if (!isset($_FILES['fontellozip']) || ($_FILES['fontellozip']['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
+        if (
+            !isset($_FILES['fontellozip']) ||
+            ($_FILES['fontellozip']['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE
+        ) {
             return;
         }
 
@@ -103,8 +106,10 @@ class admin_plugin_fontello extends AdminPlugin
         echo '<div class="table"><table class="inline"><tbody>';
         echo '<tr><th>' . hsc($this->getLang('current_zip')) . '</th><td>' . hsc($package['zip_name']) . '</td></tr>';
         echo '<tr><th>' . hsc($this->getLang('current_prefix')) . '</th><td>' . hsc($package['prefix']) . '</td></tr>';
-        echo '<tr><th>' . hsc($this->getLang('current_count')) . '</th><td>' . (int) $package['icon_count'] . '</td></tr>';
-        echo '<tr><th>' . hsc($this->getLang('current_enabled')) . '</th><td>' . (int) $package['enabled_count'] . '</td></tr>';
+        echo '<tr><th>' . hsc($this->getLang('current_count')) . '</th><td>' .
+            (int) $package['icon_count'] . '</td></tr>';
+        echo '<tr><th>' . hsc($this->getLang('current_enabled')) . '</th><td>' .
+            (int) $package['enabled_count'] . '</td></tr>';
         echo '<tr><th>' . hsc($this->getLang('current_imported')) . '</th><td>' .
             hsc($package['imported_at'] ? $package['imported_at'] : $this->getLang('unknown')) . '</td></tr>';
         echo '</tbody></table></div>';

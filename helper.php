@@ -272,7 +272,8 @@ class helper_plugin_fontello extends Plugin
         io_makeFileDir(self::ACTIVE_MANIFEST);
         file_put_contents(self::ACTIVE_MANIFEST, json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
         io_makeFileDir(self::ACTIVE_ENABLED);
-        file_put_contents(self::ACTIVE_ENABLED, json_encode(array_column($icons, 'name'), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        $enabledJson = json_encode(array_column($icons, 'name'), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        file_put_contents(self::ACTIVE_ENABLED, $enabledJson);
         io_makeFileDir(self::ACTIVE_CSS);
         file_put_contents(self::ACTIVE_CSS, $css);
         $this->purgeDokuWikiCaches();
@@ -498,7 +499,8 @@ class helper_plugin_fontello extends Plugin
         $exitCode = proc_close($process);
 
         if ($exitCode !== 0) {
-            throw new RuntimeException(trim($error) !== '' ? trim($error) : sprintf($this->getLang('err_archive_read'), $entryName));
+            $message = trim($error) !== '' ? trim($error) : sprintf($this->getLang('err_archive_read'), $entryName);
+            throw new RuntimeException($message);
         }
 
         return $content;
