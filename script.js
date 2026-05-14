@@ -103,8 +103,9 @@
         var $picker = jQuery(document.createElement('div'))
             .addClass('picker a11y pk_fontello')
             .attr('id', pickerid)
+            .attr('aria-hidden', 'true')
             .css('position', 'absolute')
-            .prop('hidden', true);
+            .removeAttr('hidden');
 
         jQuery.each(props.list, function (_, icon) {
             var name = icon.name || '';
@@ -135,6 +136,7 @@
 
         $btn.on('click', function (event) {
             pickerToggle(pickerid, $btn);
+            $picker.removeAttr('hidden').prop('hidden', false);
             event.preventDefault();
         });
 
